@@ -33,14 +33,24 @@ app.use(cors());
 app.use(auth(config));
 
 // req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
 //  res.send(req.oidc.isAuthenticated() ? 'Prijavljen' : 'Odjavljen');
 const isAuthenticated = req.oidc.isAuthenticated();
   const linkText = isAuthenticated ? 'Odjava' : 'Prijava';
   const linkUrl = isAuthenticated ? 'http://localhost:PORT/logout' : 'http://localhost:PORT/test';
   const linkHTML = `<a href="${linkUrl}">${linkText}</a>`;
   res.send(`${isAuthenticated ? 'Prijavljen' : 'Odjavljen'} | ${linkHTML}`);
-});
+});*/
+app.get('/', (req, res) => {
+    const isAuthenticated = req.oidc.isAuthenticated();
+    const linkText = isAuthenticated ? 'Odjava' : 'Prijava';
+    const linkUrl = isAuthenticated
+      ? `${process.env.AUTH0_BASE_URL}/logout`
+      : `${process.env.AUTH0_BASE_URL}/test`;  // Ali ustrezna ruta za prijavo
+    const linkHTML = `<a href="${linkUrl}">${linkText}</a>`;
+    res.send(`${isAuthenticated ? 'Prijavljen' : 'Odjavljen'} | ${linkHTML}`);
+  });
+  
   
 // za statično vsebino (HTML, CSS, JavaScript)
 app.use(express.static('public'));

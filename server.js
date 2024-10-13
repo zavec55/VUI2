@@ -9,14 +9,20 @@ const { auth } = require('express-openid-connect');
 const { requiresAuth } = require('express-openid-connect');
 const eventRoutes = require('./routes/eventRouter');
 const newsRoutes = require('./routes/newsRouter');
+require('dotenv').config();
 
+const PORT = process.env.PORT || 3000;
 const config = {
     authRequired: false,
     auth0Logout: true,
-    secret: 'a long, randomly-generated string stored in env',
+   /* secret: 'a long, randomly-generated string stored in env',
     baseURL: 'http://localhost:3000',
     clientID: 'SRTeWbmhunh0xNhync1TmbDp7GrJwTgg',
-    issuerBaseURL: 'https://dev-drv6xgdq0ifuszzp.us.auth0.com'
+    issuerBaseURL: 'https://dev-drv6xgdq0ifuszzp.us.auth0.com'*/
+    secret: process.env.AUTH0_SECRET,            // Naloži iz .env datoteke
+    baseURL: process.env.AUTH0_BASE_URL,         // Naloži iz .env datoteke
+    clientID: process.env.AUTH0_CLIENT_ID,       // Naloži iz .env datoteke
+    issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL // Naloži iz .env datoteke
 };
 // za prikaz slik iz mape slike
 //app.use('/slike', express.static(path.join(__dirname, '/slike')));
@@ -31,7 +37,7 @@ app.get('/', (req, res) => {
 //  res.send(req.oidc.isAuthenticated() ? 'Prijavljen' : 'Odjavljen');
 const isAuthenticated = req.oidc.isAuthenticated();
   const linkText = isAuthenticated ? 'Odjava' : 'Prijava';
-  const linkUrl = isAuthenticated ? 'http://localhost:3000/logout' : 'http://localhost:3000/test';
+  const linkUrl = isAuthenticated ? 'http://localhost:PORT/logout' : 'http://localhost:PORT/test';
   const linkHTML = `<a href="${linkUrl}">${linkText}</a>`;
   res.send(`${isAuthenticated ? 'Prijavljen' : 'Odjavljen'} | ${linkHTML}`);
 });
@@ -271,12 +277,23 @@ app.put('/rooms/:id', requiresAuth(), async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
-
+/*
 mongoose.connect('mongodb+srv://pts-user:zavec@cluster0.t8kwdtk.mongodb.net/testno')//mongodb+srv://toni:toni123@cluster0.hny2wxj.mongodb.net/')
 .then(() => {
     console.log("Povezan na bazo");
-    app.listen(3000, () => {
-        console.log('Aplikacija je zagnana na portu 3000');
+    const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Aplikacija je zagnana na portu ${PORT}`);
+});
+}).catch((error) => {
+    console.log(error);
+});*/
+mongoose.connect(process.env.MONGO_URI)
+.then(() => {
+    console.log("Povezan na bazo");
+    app.listen(PORT, () => {
+        console.log(`Aplikacija je zagnana na portu ${PORT}`);
     });
 }).catch((error) => {
     console.log(error);

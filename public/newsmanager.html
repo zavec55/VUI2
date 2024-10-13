@@ -18,7 +18,7 @@
                 <li><a href="videi.html">Prikaz videov</a></li>
                 <li><a href="news.html">Novice</a></li>
                 <li><a href="events.html">Dogodki</a></li>
-                <li><a href="http://localhost:3000/logout">Odjava</a></li>
+                <li><a href="${window.location.origin}/logout">Odjava</a></li>
             </ul>
         </nav>
     </header>
@@ -137,7 +137,7 @@
 
             async function fetchNews() {
                 try {
-                    const response = await fetch('http://localhost:3000/news/allnews');
+                    const response = await fetch(`${window.location.origin}/news/allnews`);
                     newsList = await response.json();
                     renderNews(newsList);
                 } catch (error) {
@@ -147,7 +147,7 @@
 
             async function postNewNews(news) {
                 try {
-                    const response = await fetch('http://localhost:3000/news', {
+                    const response = await fetch(`${window.location.origin}/news`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -218,7 +218,7 @@
                 }
 
                 try {
-                    const response = await fetch(`http://localhost:3000/news/${news._id}`, {
+                    const response = await fetch(`${window.location.origin}/news/${news._id}`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json'
@@ -254,7 +254,7 @@
             async function deleteNews(index) {
                 const news = newsList[index];
                 try {
-                    const response = await fetch(`http://localhost:3000/news/${news._id}`, {
+                    const response = await fetch(`${window.location.origin}/news/${news._id}`, {
                         method: 'DELETE'
                     });
                     if (response.ok) {

@@ -14,11 +14,11 @@
             <ul>
                 <li><a href="home.html">Domov</a></li>
                 <li><a href="index.html">Dodaj uporabnika</a></li>
-                <li><a href="jogaslike.html ">Vaje preko kamere</a></li>
+                <li><a href="jogaslike.html">Vaje preko kamere</a></li>
                 <li><a href="videi.html">Prikaz videov</a></li>
                 <li><a href="news.html">Novice</a></li>
                 <li><a href="events.html">Dogodki</a></li>
-                <li><a href="http://localhost:3000/logout">Odjava</a></li>
+                <li><a href="${window.location.origin}/logout">Odjava</a></li>
             </ul>
         </nav>
     </header>
@@ -53,7 +53,7 @@
         });
 
         function fetchAndDisplayNews(ascending) {
-            fetch('http://localhost:3000/news/allnews')
+            fetch(`${window.location.origin}/news/allnews`)
                 .then(response => response.json())
                 .then(data => {
                     const newsContainer = document.getElementById('news-container');

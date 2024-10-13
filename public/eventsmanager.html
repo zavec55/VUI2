@@ -16,7 +16,7 @@
                 <li><a href="videi.html">Prikaz videov</a></li>
                 <li><a href="news.html">Novice</a></li>
                 <li><a href="events.html">Dogodki</a></li>
-                <li><a href="http://localhost:3000/logout">Odjava</a></li>
+                <li><a href="${window.location.origin}/logout">Odjava</a></li>
             </ul>
         </nav>
     </header>
@@ -95,7 +95,7 @@
             let deleteEventId = null;
 
             function renderNews() {
-                fetch('http://localhost:3000/events/allevents')
+                fetch(`${window.location.origin}/events/allevents`)
                     .then(response => response.json())
                     .then(data => {
                         newsTableBody.innerHTML = '';
@@ -141,21 +141,14 @@
                     pictureUrl: newsImage
                 };
 
-                let url = 'http://localhost:3000/events';
+                let url = `${window.location.origin}/events`;
                 let method = 'POST';
                 
                 if (newsId) {
-                    // If newsId is present, we are updating an existing event
-                    console.log('news id gggg: ', newsId);
-                    url = `http://localhost:3000/events/${newsId}`;
+                    url = `${window.location.origin}/events/${newsId}`;
                     method = 'PUT';
                     newsData._id = newsId;  // Ensure the id is included for updating
                 }
-                console.log('news id: ', newsId);
-
-                console.log('URL:', url);
-                console.log('Method:', method);
-                console.log('News Data:', newsData);
 
                 fetch(url, {
                     method: method,
@@ -180,7 +173,7 @@
             }
 
             window.editNews = function(id) {
-                fetch(`http://localhost:3000/events/${id}`)
+                fetch(`${window.location.origin}/events/${id}`)
                     .then(response => response.json())
                     .then(event => {
                         document.getElementById('news-id').value = event._id;
@@ -210,7 +203,7 @@
             });
 
             function deleteNews(id) {
-                fetch(`http://localhost:3000/events/${id}`, {
+                fetch(`${window.location.origin}/events/${id}`, {
                     method: 'DELETE'
                 })
                 .then(() => {

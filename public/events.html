@@ -16,7 +16,7 @@
                 <li><a href="videi.html">Prikaz videov</a></li>
                 <li><a href="news.html">Novice</a></li>
                 <li><a href="events.html">Dogodki</a></li>
-                <li><a href="http://localhost:3000/logout">Odjava</a></li>
+                <li><a href="${window.location.origin}/logout">Odjava</a></li>
             </ul>
         </nav>
     </header>
@@ -48,7 +48,7 @@
         });
 
         function renderEvents(filter) {
-            fetch('http://localhost:3000/events/allevents')
+            fetch(`${window.location.origin}/events/allevents`)
                 .then(response => response.json())
                 .then(data => {
                     console.log('Events data:', data);

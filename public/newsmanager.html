@@ -40,23 +40,25 @@
             <a href="#" id="filter-link">Filter: Ascending</a>
         </div>
 
-        <form id="news-form">
+        <form id="news-form" style="max-width: 500px; margin: 0 auto; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
             <input type="hidden" id="news-id">
-            <div>
-                <label for="news-title">Naslov:</label>
-                <input type="text" id="news-title" required>
+            <div style="margin-bottom: 15px;">
+                <label for="news-title" style="display: block; margin-bottom: 5px;">Naslov:</label>
+                <input type="text" id="news-title" required size="40" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
             </div>
-            <div>
-                <label for="news-content">Vsebina:</label>
-                <textarea id="news-content" required></textarea>
+            <div style="margin-bottom: 15px;">
+                <label for="news-content" style="display: block; margin-bottom: 5px;">Vsebina:</label>
+                <textarea id="news-content" required rows="5" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
             </div>
-            <div>
-                <label for="news-image">Slika (URL):</label>
-                <input type="text" id="news-image">
+            <div style="margin-bottom: 15px;">
+                <label for="news-image" style="display: block; margin-bottom: 5px;">Slika (URL):</label>
+                <input type="text" id="news-image" size="40" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
             </div>
-            <button type="submit">Dodaj novico</button>
+            <button type="submit" style="display: block; width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">
+                Dodaj novico
+            </button>
         </form>
-
+        
         <table id="news-table">
             <thead>
                 <tr>

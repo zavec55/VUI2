@@ -39,15 +39,15 @@
             <input type="hidden" id="news-id">
             <div>
                 <label for="news-title">Ime</label>
-                <input type="text" id="news-title" required>
+                <input type="text" id="news-title" required size="40">
             </div>
             <div>
                 <label for="news-content">Opis</label>
-                <textarea id="news-content" required></textarea>
+                <textarea id="news-content" required rows="5" cols="50"></textarea>
             </div>
             <div>
                 <label for="news-location">Lokacija</label>
-                <input type="text" id="news-location" required>
+                <input type="text" id="news-location" required size="30">
             </div>
             <div>
                 <label for="news-date">Datum</label>
@@ -55,11 +55,11 @@
             </div>
             <div>
                 <label for="news-image">Slika (URL)</label>
-                <input type="text" id="news-image">
+                <input type="text" id="news-image" size="40">
             </div>            
             <button type="submit">Dodaj dogodek</button>
         </form>
-
+        
         <table id="news-table">
             <thead>
                 <tr>

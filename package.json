@@ -7,12 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "node server.js",
     "dev": "nodemon server.js",
-    "watch": "nodemon"
+    "watch": "nodemon",
+    "wdio": "wdio run ./wdio.conf.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@wdio/cli": "^9.4.1",
+    "appium": "^2.13.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
@@ -23,6 +26,12 @@
     "mongose": "^0.0.2-security"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "@wdio/local-runner": "^9.4.1",
+    "@wdio/mocha-framework": "^9.2.8",
+    "@wdio/spec-reporter": "^9.2.14",
+    "appium-uiautomator2-driver": "^3.9.1",
+    "chromedriver": "^131.0.2",
+    "nodemon": "^3.1.0",
+    "wdio-chromedriver-service": "^8.1.1"
   }
 }
